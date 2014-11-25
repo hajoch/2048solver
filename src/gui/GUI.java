@@ -87,7 +87,7 @@ public class GUI extends JPanel implements Runnable{
         while(!game2048.lost) {
 //            viewQueue.add(game2048.getTiles());
             try {
-                Thread.sleep(100);
+                Thread.sleep(0);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

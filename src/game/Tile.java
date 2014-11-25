@@ -22,7 +22,7 @@ public class Tile {
     }
 
     public Color getForeground() {
-        return value < 16 ? new Color(0x776e65) :  new Color(0xf9f6f2);
+        return value < 8 ? new Color(0x776e65) :  new Color(0xf9f6f2);
     }
 
     public Color getBackground() {
@@ -38,6 +38,8 @@ public class Tile {
             case 512:  return new Color(0xedc850);
             case 1024: return new Color(0xedc53f);
             case 2048: return new Color(0xedc22e);
+            case 4096: return new Color(171,97,167);
+            case 8192: return new Color(60,58,50);
         }
         return new Color(0xcdc1b4);
     }
