@@ -126,25 +126,7 @@ public class GUI extends JPanel implements Runnable{
                         default:
                             return;
                     }
-                    int[] asd = new int[4*4];
-                    Tile[] t = game2048.getTiles();
-                    for(int i=0; i<4*4; i++) {
-                        asd[i] = t[i].value;
-                    }
-
-                    Grid d = GameLogic.simulateMove(new Grid(asd),dir);
                     game2048.move(dir);
-                    for(int j=0; j<4*4; j++) {
-                        if(j % 4==0)
-                            System.out.println();
-                        System.out.print(d.grid[j]+"-");
-                    }
-                    System.out.println("\n----------");
-                    for(int j=0; j<4*4; j++) {
-                        if(j % 4==0)
-                            System.out.println();
-                        System.out.print(game2048.getTiles()[j].value+"-");
-                    }
                 }
                 if (!game2048.canMove()) {
                     game2048.lost = true;
@@ -206,20 +188,11 @@ public class GUI extends JPanel implements Runnable{
         if (value != 0)
             g.drawString(s, xOffset + (TILE_SIZE - w) / 2, yOffset + TILE_SIZE - (TILE_SIZE - h) / 2 - 2);
 
-        if (game2048.lost) {
-            g.setColor(new Color(255, 255, 255, 30));
-            g.fillRect(0, 0, getWidth(), getHeight());
-            g.setColor(new Color(78, 139, 202));
-            g.setFont(new Font(FONT, Font.BOLD, 48));
-
             if (game2048.lost) {
-                g.drawString("Game over!", 50, 130);
-                g.drawString("You lose!", 64, 200);
+                g.drawString("Game over!", 250, 300);
                 g.setFont(new Font(FONT, Font.PLAIN, 16));
-                g.setColor(new Color(128, 128, 128, 128));
-                g.drawString("Press ESC to play again", 80, getHeight() - 40);
+
             }
-        }
         g.setFont(new Font(FONT, Font.PLAIN, 18));
         g.drawString("Score: " + game2048.getScore(), 250, 620);
 

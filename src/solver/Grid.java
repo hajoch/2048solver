@@ -31,14 +31,6 @@ public class Grid {
                 dirsa.add(dir);
         }
         return dirsa.toArray(new Direction[dirsa.size()]);
-
-
-/*        Direction[] dirs = new Direction[4];
-        dirs[0] = Direction.DOWN;
-        dirs[1] = Direction.LEFT;
-        dirs[2] = Direction.RIGHT;
-        dirs[3] = Direction.UP;
-        return dirs;//Direction.values(); //TODO remove unnceccesary directions for the grid.*/
     }
 
     public List<Grid> getTilePossibilities() {

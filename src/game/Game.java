@@ -50,7 +50,12 @@ public class Game {
     }
 
     public void move(Direction direction) {
-        System.out.println(direction.degrees);
+
+        if(direction==null){
+            lost = true;
+            return;
+        }
+
         tiles = rotate(direction.degrees);
 
         boolean addTile = false;
@@ -65,8 +70,6 @@ public class Game {
             addTile();
 
         tiles = rotate(360 - direction.degrees);
-
-        System.out.println("SCORE: "+score);
     }
 
     private boolean isFull() {
