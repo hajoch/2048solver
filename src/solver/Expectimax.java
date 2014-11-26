@@ -76,6 +76,7 @@ public class Expectimax {
 
     public int MAXDEPTH = 6;
 
+    public boolean big = false;
 
     public Direction nextMove(Tile[] tiles){
 
@@ -131,9 +132,14 @@ public class Expectimax {
         }
 */
 //        createFocusMultipliers(array);
+        if(maxVal >=8000)
+            big = true;
+        else
+            big = true;
 
         Score score = bestScore(new Grid(array), MAXDEPTH);
         System.out.println(score.direction+": "+score.score);
+        /*
 
         if(score.direction == null) {
             System.out.println();
@@ -144,6 +150,7 @@ public class Expectimax {
                 System.out.println();
             }
         }
+        */
 
         return score.direction;
     }
@@ -223,7 +230,7 @@ public class Expectimax {
 
             score += (grid.grid[i]/*grid.grid[i]*/) * special1[i];
 
-            if(i<15) {
+            if(i<15 && big) {
 //                int prev = grid.grid[order[i-1]];
                 int curr = grid.grid[order[i]];
                 int next = grid.grid[order[i+1]];

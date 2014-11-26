@@ -31,6 +31,9 @@ public class GUI extends JPanel implements Runnable{
     private final int TILE_SIZE = 125;
     private final int TILE_MARGIN = 16;
 
+    public int lessThan2048 = 0;
+    public int exactly4096 = 0;
+    public int exactly8192 = 0;
 
     private LinkedList<Tile[]> viewQueue = new LinkedList<Tile[]>();
 
@@ -84,7 +87,7 @@ public class GUI extends JPanel implements Runnable{
         }, DELAY);
 
 
-        while(!game2048.lost) {
+        while(true) {
 //            viewQueue.add(game2048.getTiles());
             try {
                 Thread.sleep(0);
@@ -93,6 +96,25 @@ public class GUI extends JPanel implements Runnable{
             }
             game2048.move(algorithm.nextMove(game2048.getTiles()));//viewQueue.getFirst()));
             repaint();
+
+            if(game2048.lost) {
+                int largest = 0;
+                for (Tile tile : game2048.getTiles()) {
+                    if(tile.value > largest)
+                        largest = tile.value;
+                }
+                if(largest < 4096)
+                    lessThan2048++;
+                else if(largest == 4096)
+                    exactly4096++;
+                else if(largest == 8192)
+                    exactly8192++;
+                else if(largest > 8192) {
+                    System.out.println("\nLargest tile: "+largest+"\nScore: "+game2048.getScore());
+                    break;
+                }
+                game2048.resetGame();
+            }
         }
     }
 
@@ -195,6 +217,9 @@ public class GUI extends JPanel implements Runnable{
             }
         g.setFont(new Font(FONT, Font.PLAIN, 18));
         g.drawString("Score: " + game2048.getScore(), 250, 620);
+        g.drawString("less than 4096: "+lessThan2048, 50, 600);
+        g.drawString("4096: "+exactly4096, 50, 620);
+        g.drawString("8192: "+exactly8192, 50, 640);
 
     }
 
